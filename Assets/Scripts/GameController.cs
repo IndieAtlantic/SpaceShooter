@@ -18,11 +18,14 @@ public class GameController : MonoBehaviour
     public Text gameOverText;
     public Text winText;
     public Text creatorText;
+    public Text lifeText;
+    public int life;
 
     private bool gameOver;
     private bool restart;
     public bool win;
     private int score;
+    
     
     void Start()
     {
@@ -36,6 +39,9 @@ public class GameController : MonoBehaviour
         restartText.text = "";
         gameOverText.text = "";
         winText.text = "";
+        life = 3;
+        lifeText.text = "Lives left: " + life;
+
     }
     void Update()
     {

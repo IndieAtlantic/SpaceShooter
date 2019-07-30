@@ -6,6 +6,7 @@ public class BGScroller : MonoBehaviour
 {
     public float scrollSpeed;
     public float tileSizez;
+    public GameController gameController;
 
     private Vector3 startPosition;
 
@@ -13,6 +14,15 @@ public class BGScroller : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
+        GameObject gameControllerObject = GameObject.FindWithTag("GameController");
+        if (gameControllerObject != null)
+        {
+            gameController = gameControllerObject.GetComponent<GameController>();
+        }
+        if (gameController == null)
+        {
+            Debug.Log("Cannot find 'GameController' script");
+        }
     }
 
     // Update is called once per frame
@@ -20,5 +30,11 @@ public class BGScroller : MonoBehaviour
     {
         float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizez);
         transform.position = startPosition + Vector3.forward * newPosition;
+
+        if (gameController.win == true)
+        {
+            float Position = Mathf.Repeat (Time.time * scrollSpeed, tileSizez);
+            transform.position = (startPosition + Vector3.forward * newPosition)* 4;
+        }
     }
 }
