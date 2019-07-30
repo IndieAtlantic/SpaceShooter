@@ -25,11 +25,11 @@ public class GameController : MonoBehaviour
     private bool restart;
     public bool win;
     private int score;
-    
-    
+
+
     void Start()
     {
-        StartCoroutine (SpawnWaves());
+        StartCoroutine(SpawnWaves());
         score = 0;
         UpdateScore();
         gameOver = false;
@@ -50,20 +50,20 @@ public class GameController : MonoBehaviour
 
         if (restart)
         {
-            if (Input.GetKeyDown (KeyCode.X))
+            if (Input.GetKeyDown(KeyCode.X))
             {
                 SceneManager.LoadScene("Main");
             }
         }
     }
-    IEnumerator SpawnWaves ()
+    IEnumerator SpawnWaves()
     {
         yield return new WaitForSeconds(startWait);
         while (true)
         {
             for (int i = 0; i < hazardCount; i++)
             {
-                GameObject hazard = hazards[Random.Range (0,hazards.Length)];
+                GameObject hazard = hazards[Random.Range(0, hazards.Length)];
                 Vector3 spawnPosition = new Vector3(Random.Range(-spawnValues.x, spawnValues.x), spawnValues.y, spawnValues.z);
                 Quaternion spawnRotation = Quaternion.identity;
                 Instantiate(hazard, spawnPosition, spawnRotation);
@@ -84,7 +84,7 @@ public class GameController : MonoBehaviour
             }
         }
     }
-    public void AddScore (int newScoreValue)
+    public void AddScore(int newScoreValue)
     {
         score += newScoreValue;
         UpdateScore();
@@ -95,15 +95,16 @@ public class GameController : MonoBehaviour
             creatorText.text = "Game made by Anna Alvarez";
         }
     }
-    
+
     void UpdateScore()
     {
-    scoreText.text = "Points: " + score;
+        scoreText.text = "Points: " + score;
     }
     public void GameOver()
     {
         gameOverText.text = "Game Over";
         gameOver = true;
     }
+    
     
 }

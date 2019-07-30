@@ -43,14 +43,15 @@ public class DestroyByContact : MonoBehaviour
         {
             gameController.life = gameController.life - 1;
             if (gameController.life == 0)
-            {
+                {
                 Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
                 gameController.GameOver();
-               Destroy(gameObject);
-            } 
+                Destroy(gameObject);
+                }
+            return;
         }
         gameController.AddScore (scoreValue);
         Destroy(other.gameObject);
-        
+        Destroy(gameObject);
     }
 }
