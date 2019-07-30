@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
+        lifeText.text = "Lives left: " + life;
         if (Input.GetKey("escape"))
             Application.Quit();
 

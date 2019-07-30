@@ -44,6 +44,7 @@ public class DestroyByContact : MonoBehaviour
             gameController.life = gameController.life - 1;
             if (gameController.life == 0)
                 {
+                // something here is weird, not sure why it isn't destroying the player once lives run out
                 Instantiate(playerExplosion, other.transform.position, other.transform.rotation);
                 gameController.GameOver();
                 Destroy(gameObject);

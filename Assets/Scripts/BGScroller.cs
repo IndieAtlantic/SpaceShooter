@@ -33,7 +33,8 @@ public class BGScroller : MonoBehaviour
 
         if (gameController.win == true)
         {
-            float Position = Mathf.Repeat ((Time.time * scrollSpeed)*20, tileSizez) ;
+            // I don't like having the same lines of code here but idk how else to put it
+            float newPosition = Mathf.Repeat ((Time.time * scrollSpeed)*20, tileSizez) ;
             transform.position = (startPosition + Vector3.forward * Position);
         }
     }
