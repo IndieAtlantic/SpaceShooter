@@ -7,12 +7,14 @@ public class BGScroller : MonoBehaviour
     public float scrollSpeed;
     public float tileSizez;
     public GameController gameController;
+    public float newPosition;
 
+    //private ParticleSystem ps;
     private Vector3 startPosition;
 
-    // Start is called before the first frame update
     void Start()
     {
+        //ps = GetComponent<ParticleSystem>();
         startPosition = transform.position;
         GameObject gameControllerObject = GameObject.FindWithTag("GameController");
         if (gameControllerObject != null)
@@ -25,17 +27,19 @@ public class BGScroller : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
-        float newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizez);
-        transform.position = startPosition + Vector3.forward * newPosition;
-
         if (gameController.win == true)
         {
-            // I don't like having the same lines of code here but idk how else to put it
-            float newPosition = Mathf.Repeat ((Time.time * scrollSpeed)*20, tileSizez) ;
-            transform.position = (startPosition + Vector3.forward * Position);
+           // var main = ps.main;
+           // main.simulationSpeed = 10.0f;
+            newPosition = Mathf.Repeat((Time.time * scrollSpeed) * 20, tileSizez);
+            transform.position = (startPosition + Vector3.forward * newPosition);
+        }
+        else
+        {
+            newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizez);
+            transform.position = startPosition + Vector3.forward * newPosition;
         }
     }
 }
