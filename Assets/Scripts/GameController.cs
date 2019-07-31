@@ -21,12 +21,19 @@ public class GameController : MonoBehaviour
     public Text lifeText;
     public int life;
 
+    public AudioSource background;
+    public AudioSource winning;
+    public AudioSource losing;
+
     private bool gameOver;
     private bool restart;
     public bool win;
-    private int score;
+    public int score;
 
-
+    void Awake()
+    {
+        background.Play();
+    }
     void Start()
     {
         StartCoroutine(SpawnWaves());
@@ -56,6 +63,7 @@ public class GameController : MonoBehaviour
                 SceneManager.LoadScene("Main");
             }
         }
+        
     }
     IEnumerator SpawnWaves()
     {
@@ -89,8 +97,10 @@ public class GameController : MonoBehaviour
     {
         score += newScoreValue;
         UpdateScore();
-        if (score == 100)
+        if (score >= 100)
         {
+            background.Stop();
+            winning.Play();
             win = true;
             winText.text = "You win!";
             creatorText.text = "Game made by Anna Alvarez";
@@ -103,6 +113,8 @@ public class GameController : MonoBehaviour
     }
     public void GameOver()
     {
+        background.Stop();
+        losing.Play();
         gameOverText.text = "Game Over";
         gameOver = true;
     }
