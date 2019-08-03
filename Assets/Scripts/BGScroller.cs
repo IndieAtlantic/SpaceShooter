@@ -8,8 +8,7 @@ public class BGScroller : MonoBehaviour
     public float tileSizez;
     public GameController gameController;
     public float newPosition;
-    public ParticleSystem ps1;
-    public ParticleSystem ps2;
+    
 
     private Vector3 startPosition;
 
@@ -30,24 +29,18 @@ public class BGScroller : MonoBehaviour
 
     void Update()
     {
-        if (gameController.score >= 100)
+        if (gameController.win == true)
         {
-            var main1 = ps1.main;
-            main1.simulationSpeed = 10.0f;
-            var main2 = ps2.main;
-            main2.simulationSpeed = 10.0f;
-        }
-            if (gameController.win == true)
-            {
 
-                newPosition = Mathf.Repeat((Time.time * scrollSpeed) * 20, tileSizez);
-                transform.position = (startPosition + Vector3.forward * newPosition);
-            }
-            else
-            {
-                newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizez);
-                transform.position = startPosition + Vector3.forward * newPosition;
-            }
+            newPosition = Mathf.Repeat((Time.time * scrollSpeed) * 30, tileSizez);
+            transform.position = (startPosition + Vector3.forward * newPosition);
         }
-
+        else
+        {
+            newPosition = Mathf.Repeat(Time.time * scrollSpeed, tileSizez);
+            transform.position = startPosition + Vector3.forward * newPosition;
+        }
     }
+    
+}
+
